@@ -7,8 +7,9 @@
 
 <body>
     <h1>Hello, {{ $name }}!</h1>
-    <p>Thank you for registering with us. We are excited to have you on board!</p>
-    <p>If you have any questions, feel free to reply to this email.</p>
+    <p>We have registered a new account for you.</p>
+    <p>Your password is: {{ $password }}</p>
+    <p>Thank you</p>
     <p>Best regards,<br>{{ config('app.name') }} Team</p>
 </body>
 

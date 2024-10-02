@@ -12,7 +12,6 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-
         // Validate the request
         $request->validate([
             'name' => 'required|string|max:255',
@@ -20,15 +19,18 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
+        // Save the plain password before hashing
+        $plainPassword = $request->password;
+
         // Create the user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Use Hash facade for password hashing
+            'password' => Hash::make($plainPassword), // Use Hash facade for password hashing
         ]);
 
-        // Send welcome email
-        Mail::to($user->email)->send(new WelcomeMail($user));
+        // Send welcome email with plain password
+        Mail::to($user->email)->send(new WelcomeMail($user, $plainPassword));
 
         // Optionally, you can return a token or some data after registration
         return response()->json([
@@ -36,6 +38,7 @@ class UserController extends Controller
             'user' => $user,
         ], 201);
     }
+
 
     public function login(Request $request)
     {
