@@ -26,3 +26,5 @@ Route::get('/example', function (Request $request) {
 
 Route::post('/import', [RespondentController::class, 'import'])->name('import');
 Route::get('/get-gender', [RespondentController::class, 'get_gender'])->name('gender');
+Route::post('/upload-photo', [UserController::class, 'uploadPhoto']);
+Route::post('/user-profile', [UserController::class, 'profile']);

@@ -24,5 +24,6 @@ Route::get('/get-gender', [RespondentController::class, 'get_gender'])->name('ge
 Route::get('/filter-by-gender/{gender}', [RespondentController::class, 'get_data_by_gender'])->name('filter-by-gender');
 Route::get('/filter-by-customer/{type}', [RespondentController::class, 'get_data_by_account_holder'])->name('filter-by-customer');
 Route::get('/filter-by-purpose/{purpose}', [RespondentController::class, 'get_data_by_account_holder'])->name('filter-by-customer');
-Route::post('/register',[UserController::class, 'register'])->name('register');
-Route::post('/login',[UserController::class, 'login'])->name('login');
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::post('/resetPassword', [UserController::class, 'change_password'])->name('resetPassword');
